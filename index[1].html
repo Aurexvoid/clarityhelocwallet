@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Clarity Heloc — Digital Wallet for Modern Investors">
+<title>Clarity Heloc — Digital Wallet</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        nvda: {
+          50:"#f0fdf4",100:"#dcfce7",200:"#bbf7d0",300:"#86efac",
+          400:"#4ade80",500:"#22c55e",600:"#16a34a",700:"#15803d",
+          800:"#166534",900:"#14532d",950:"#052e16",
+        },
+        navy: {
+          50:"#f0f4f8",100:"#d9e2ec",200:"#bcccdc",300:"#9fb3c8",
+          400:"#829ab1",500:"#627d98",600:"#486581",700:"#334e68",
+          800:"#243b53",900:"#102a43",950:"#060b14",
+        },
+      },
+      fontFamily: {
+        sans: ["Inter","system-ui","sans-serif"],
+      },
+    },
+  },
+};
+</script>
+<style>
+  body{font-family:"Inter",system-ui,sans-serif;background:#060b14;color:#fff;}
+  .gradient-text{background:linear-gradient(135deg,#4ade80,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .nav-blur{backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);}
+  .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.15;pointer-events:none;}
+  html{scroll-behavior:smooth;}
+  .card-hover{transition:all .3s ease;}
+  .card-hover:hover{border-color:rgba(34,197,94,.4);transform:translateY(-2px);}
+  /* Fallback if Tailwind CDN fails */
+  .bg-navy-950{background:#060b14 !important;}
+  .text-white{color:#fff !important;}
+  .text-navy-300{color:#9fb3c8 !important;}
+  .text-navy-400{color:#829ab1 !important;}
+  .text-navy-500{color:#627d98 !important;}
+  .text-navy-200{color:#bcccdc !important;}
+  .text-nvda-400{color:#4ade80 !important;}
+  .bg-nvda-500{background:#22c55e !important;}
+  .bg-navy-900{background:#102a43 !important;}
+  .border-navy-800{border-color:#243b53 !important;}
+  .border-navy-900{border-color:#1a2d42 !important;}
+</style>
+</head>
+<body class="bg-navy-950 text-white antialiased">
+
+<!-- Navbar -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+      <a href="#" class="flex items-center gap-2 group">
+        <div class="w-9 h-9 rounded-xl bg-nvda-500 flex items-center justify-center shadow-lg shadow-nvda-500/20 group-hover:shadow-nvda-500/40 transition">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 10h.01M15 10h.01M9.5 15a3.5 3.5 0 005 0"/></svg>
+        </div>
+        <span class="text-white font-bold text-lg tracking-tight">Clarity<span class="text-nvda-400">Heloc</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#features" class="text-sm font-medium text-navy-200 hover:text-white transition">Features</a>
+        <a href="#markets" class="text-sm font-medium text-navy-200 hover:text-white transition">Markets</a>
+        <a href="#security" class="text-sm font-medium text-navy-200 hover:text-white transition">Security</a>
+        <a href="#cta" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-nvda-500 hover:bg-nvda-400 text-white text-sm font-semibold transition-all shadow-lg shadow-nvda-500/20">Get Started<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+      </div>
+      <button id="mobile-btn" class="md:hidden p-2 text-navy-200 hover:text-white" aria-label="Menu"><svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-navy-950/95 nav-blur border-b border-navy-800/50">
+    <div class="px-4 py-4 space-y-3">
+      <a href="#features" class="block text-base font-medium text-navy-200 hover:text-white py-2">Features</a>
+      <a href="#markets" class="block text-base font-medium text-navy-200 hover:text-white py-2">Markets</a>
+      <a href="#security" class="block text-base font-medium text-navy-200 hover:text-white py-2">Security</a>
+      <a href="#cta" class="block w-full text-center px-5 py-3 rounded-lg bg-nvda-500 text-white font-semibold">Get Started</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-navy-950">
+  <div class="blob w-96 h-96 bg-nvda-500 -top-40 -right-40"></div>
+  <div class="blob w-72 h-72 bg-nvda-400 top-60 -left-20"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-navy-900/80 border border-navy-800 text-nvda-400 text-sm font-medium mb-8">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      Next-Gen Digital Wallet
+    </div>
+    <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6">Your Wealth, <span class="gradient-text">Amplified</span></h1>
+    <p class="text-lg sm:text-xl text-navy-300 mb-10 max-w-2xl mx-auto leading-relaxed">Trade stocks, crypto, and forex from a single dashboard. Real-time data, bank-grade security, zero hidden fees.</p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="#cta" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-nvda-500 hover:bg-nvda-400 text-white font-bold text-lg transition-all shadow-xl shadow-nvda-500/25">Open Free Account<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+      <a href="#markets" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-navy-900 hover:bg-navy-800 text-white font-semibold text-lg border border-navy-800 transition-all">Explore Markets</a>
+    </div>
+    <div class="mt-16 lg:mt-24 grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 max-w-4xl mx-auto">
+      <div class="h-24 lg:h-32 rounded-2xl bg-navy-900/60 border border-navy-800/60 flex items-center justify-center"><div class="w-12 h-12 rounded-xl bg-navy-800/80 flex items-center justify-center"><div class="w-6 h-6 rounded bg-nvda-500/30"></div></div></div>
+      <div class="h-24 lg:h-32 rounded-2xl bg-navy-900/60 border border-navy-800/60 flex items-center justify-center"><div class="w-12 h-12 rounded-xl bg-navy-800/80 flex items-center justify-center"><div class="w-6 h-6 rounded bg-nvda-500/30"></div></div></div>
+      <div class="h-24 lg:h-32 rounded-2xl bg-navy-900/60 border border-navy-800/60 flex items-center justify-center"><div class="w-12 h-12 rounded-xl bg-navy-800/80 flex items-center justify-center"><div class="w-6 h-6 rounded bg-nvda-500/30"></div></div></div>
+      <div class="h-24 lg:h-32 rounded-2xl bg-navy-900/60 border border-navy-800/60 flex items-center justify-center"><div class="w-12 h-12 rounded-xl bg-navy-800/80 flex items-center justify-center"><div class="w-6 h-6 rounded bg-nvda-500/30"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="py-12 bg-navy-950 border-y border-navy-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 text-center">
+      <div><div class="text-3xl lg:text-4xl font-bold text-white mb-1">120K+</div><div class="text-sm text-navy-400 font-medium">Active Users</div></div>
+      <div><div class="text-3xl lg:text-4xl font-bold text-white mb-1">350+</div><div class="text-sm text-navy-400 font-medium">Assets Supported</div></div>
+      <div><div class="text-3xl lg:text-4xl font-bold text-white mb-1">45</div><div class="text-sm text-navy-400 font-medium">Countries</div></div>
+      <div><div class="text-3xl lg:text-4xl font-bold text-white mb-1">99.99%</div><div class="text-sm text-navy-400 font-medium">Uptime</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section id="features" class="py-24 bg-navy-950">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-3xl lg:text-5xl font-bold text-white mb-4">Everything You Need</h2>
+      <p class="text-lg text-navy-300">A complete financial toolkit designed for modern investors who demand speed, security, and control.</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      <div class="card-hover p-6 lg:p-8 rounded-2xl bg-navy-900/50 border border-navy-800/60">
+        <div class="w-12 h-12 rounded-xl bg-nvda-500/10 flex items-center justify-center mb-5"><svg class="w-6 h-6 text-nvda-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+        <h3 class="text-xl font-bold text-white mb-2">Bank-Grade Security</h3><p class="text-navy-300 leading-relaxed">256-bit encryption, biometric auth, and cold storage for digital assets.</p>
+      </div>
+      <div class="card-hover p-6 lg:p-8 rounded-2xl bg-navy-900/50 border border-navy-800/60">
+        <div class="w-12 h-12 rounded-xl bg-nvda-500/10 flex items-center justify-center mb-5"><svg class="w-6 h-6 text-nvda-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
+        <h3 class="text-xl font-bold text-white mb-2">Real-Time Trading</h3><p class="text-navy-300 leading-relaxed">Execute trades in milliseconds with live market data and advanced charts.</p>
+      </div>
+      <div class="card-hover p-6 lg:p-8 rounded-2xl bg-navy-900/50 border border-navy-800/60">
+        <div class="w-12 h-12 rounded-xl bg-nvda-500/10 flex items-center justify-center mb-5"><svg class="w-6 h-6 text-nvda-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <h3 class="text-xl font-bold text-white mb-2">Global Access</h3><p class="text-navy-300 leading-relaxed">Send, receive, and trade across 45 countries with multi-currency support.</p>
+      </div>
+      <div class="card-hover p-6 lg:p-8 rounded-2xl bg-navy-900/50 border border-navy-800/60">
+        <div class="w-12 h-12 rounded-xl bg-nvda-500/10 flex items-center justify-center mb-5"><svg class="w-6 h-6 text-nvda-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div>
+        <h3 class="text-xl font-bold text-white mb-2">Self-Custody Options</h3><p class="text-navy-300 leading-relaxed">You control your keys. Optional hardware wallet integration included.</p>
+      </div>
+      <div class="card-hover p-6 lg:p-8 rounded-2xl bg-navy-900/50 border border-navy-800/60">
+        <div class="w-12 h-12 rounded-xl bg-nvda-500/10 flex items-center justify-center mb-5"><svg class="w-6 h-6 text-nvda-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></div>
+        <h3 class="text-xl font-bold text-white mb-2">Portfolio Analytics</h3><p class="text-navy-300 leading-relaxed">AI-powered insights on your holdings, risk exposure, and rebalance suggestions.</p>
+      </div>
+      <div class="card-hover p-6 lg:p-8 rounded-2xl bg-navy-900/50 border border-navy-800/60">
+        <div class="w-12 h-12 rounded-xl bg-nvda-500/10 flex items-center justify-center mb-5"><svg class="w-6 h-6 text-nvda-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z"/></svg></div>
+        <h3 class="text-xl font-bold text-white mb-2">Advanced Charts</h3><p class="text-navy-300 leading-relaxed">Professional TradingView-powered charts with 100+ technical indicators.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Markets -->
+<section id="markets" class="py-24 bg-navy-950 relative overflow-hidden">
+  <div class="blob w-[800px] h-[400px] bg-nvda-500 top-0 left-1/2 -translate-x-1/2"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12 gap-6">
+      <div><h2 class="text-3xl lg:text-5xl font-bold text-white mb-4">Live Markets</h2><p class="text-lg text-navy-300 max-w-xl">Track your favorite assets across crypto, stocks, and forex in real time.</p></div>
+      <a href="#cta" class="inline-flex items-center gap-2 text-nvda-400 hover:text-nvda-300 font-semibold transition">View All Assets<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="flex items-center gap-4 p-5 rounded-xl bg-navy-900/60 border border-navy-800/50 hover:border-navy-700 transition">
+        <div class="w-11 h-11 rounded-lg bg-navy-800 flex items-center justify-center shrink-0"><svg class="w-5 h-5 text-nvda-400" viewBox="0 0 24 24" fill="currentColor"><path d="M23.638 14.904c-1.602 6.43-8.113 10.324-14.542 8.722C2.67 22.05-1.244 15.525.362 9.105 1.962 2.67 8.475-1.244 14.9.358c6.43 1.605 10.342 8.115 8.738 14.546zm-6.35-4.613c.24-1.59-.974-2.45-2.64-3.03l.54-2.153-1.315-.33-.52 2.1c-.347-.087-.7-.167-1.052-.25l.53-2.12-1.32-.33-.54 2.15c-.286-.065-.567-.13-.84-.2l-1.815-.45-.35 1.407s.975.224.955.238c.535.136.63.486.615.766l-.616 2.473c.037.01.085.024.138.047l-.14-.035-.865 3.47c-.066.163-.234.408-.612.315.014.02-.956-.238-.956-.238L8.1 19.13l1.71.426c.318.08.63.164.936.243l-.544 2.19 1.32.33.54-2.16c.36.098.708.188 1.05.273l-.537 2.14 1.32.33.544-2.18c2.24.424 3.926.253 4.634-1.774.57-1.63-.027-2.567-1.21-3.177.86-.2 1.508-.77 1.68-1.95zm-3.01 4.26c-.406 1.64-3.157.75-4.05.53l.72-2.9c.893.22 3.757.66 3.33 2.37zm.41-4.28c-.37 1.49-2.96.73-3.784.55l.66-2.64c.824.18 3.48.52 3.12 2.09z"/></svg></div>
+        <div class="flex-1 min-w-0"><div class="flex items-center justify-between mb-0.5"><span class="text-white font-semibold truncate">Bitcoin</span><span class="text-white font-mono font-medium">$67,420</span></div><div class="flex items-center justify-between text-sm"><span class="text-navy-400">BTC</span><span class="font-medium text-nvda-400">+2.4%</span></div></div>
+      </div>
+      <div class="flex items-center gap-4 p-5 rounded-xl bg-navy-900/60 border border-navy-800/50 hover:border-navy-700 transition">
+        <div class="w-11 h-11 rounded-lg bg-navy-800 flex items-center justify-center shrink-0"><svg class="w-5 h-5 text-nvda-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <div class="flex-1 min-w-0"><div class="flex items-center justify-between mb-0.5"><span class="text-white font-semibold truncate">Ethereum</span><span class="text-white font-mono font-medium">$3,520</span></div><div class="flex items-center justify-between text-sm"><span class="text-navy-400">ETH</span><span class="font-medium text-nvda-400">+1.8%</span></div></div>
+      </div>
+      <div class="flex items-center gap-4 p-5 rounded-xl bg-navy-900/60 border border-navy-800/50 hover:border-navy-700 transition">
+        <div class="w-11 h-11 rounded-lg bg-navy-800 flex items-center justify-center shrink-0"><svg class="w-5 h-5 text-nvda-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg></div>
+        <div class="flex-1 min-w-0"><div class="flex items-center justify-between mb-0.5"><span class="text-white font-semibold truncate">S&P 500</span><span class="text-white font-mono font-medium">$5,240</span></div><div class="flex items-center justify-between text-sm"><span class="text-navy-400">SPX</span><span class="font-medium text-nvda-400">+0.6%</span></div></div>
+      </div>
+      <div class="flex items-center gap-4 p-5 rounded-xl bg-navy-900/60 border border-navy-800/50 hover:border-navy-700 transition">
+        <div class="w-11 h-11 rounded-lg bg-navy-800 flex items-center justify-center shrink-0"><svg class="w-5 h-5 text-nvda-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg></div>
+        <div class="flex-1 min-w-0"><div class="flex items-center justify-between mb-0.5"><span class="text-white font-semibold truncate">NASDAQ</span><span class="text-white font-mono font-medium">$16,800</span></div><div class="flex items-center justify-between text-sm"><span class="text-navy-400">IXIC</span><span class="font-medium text-red-400">-0.3%</span></div></div>
+      </div>
+      <div class="flex items-center gap-4 p-5 rounded-xl bg-navy-900/60 border border-navy-800/50 hover:border-navy-700 transition">
+        <div class="w-11 h-11 rounded-lg bg-navy-800 flex items-center justify-center shrink-0"><svg class="w-5 h-5 text-nvda-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div>
+        <div class="flex-1 min-w-0"><div class="flex items-center justify-between mb-0.5"><span class="text-white font-semibold truncate">NVIDIA</span><span class="text-white font-mono font-medium">$890</span></div><div class="flex items-center justify-between text-sm"><span class="text-navy-400">NVDA</span><span class="font-medium text-nvda-400">+4.2%</span></div></div>
+      </div>
+      <div class="flex items-center gap-4 p-5 rounded-xl bg-navy-900/60 border border-navy-800/50 hover:border-navy-700 transition">
+        <div class="w-11 h-11 rounded-lg bg-navy-800 flex items-center justify-center shrink-0"><svg class="w-5 h-5 text-nvda-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <div class="flex-1 min-w-0"><div class="flex items-center justify-between mb-0.5"><span class="text-white font-semibold truncate">EUR/USD</span><span class="text-white font-mono font-medium">1.084</span></div><div class="flex items-center justify-between text-sm"><span class="text-navy-400">FX</span><span class="font-medium text-nvda-400">+0.1%</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Security -->
+<section id="security" class="py-24 bg-navy-950">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div>
+        <h2 class="text-3xl lg:text-5xl font-bold text-white mb-6">Security First.<br>Always.</h2>
+        <p class="text-lg text-navy-300 mb-8 leading-relaxed">Your assets are protected by industry-leading security protocols. From biometric authentication to cold storage, we built Clarity Heloc with a security-first architecture.</p>
+        <div class="space-y-4">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-nvda-500/10 flex items-center justify-center shrink-0 mt-0.5"><svg class="w-5 h-5 text-nvda-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+            <div><h4 class="text-white font-semibold mb-1">256-Bit Encryption</h4><p class="text-navy-400 text-sm">All data is encrypted in transit and at rest using AES-256.</p></div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-nvda-500/10 flex items-center justify-center shrink-0 mt-0.5"><svg class="w-5 h-5 text-nvda-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.131A8 8 0 008 3.239c-5.34 2.266-9.174 7.29-9.174 13.239 0 1.596.228 3.139.652 4.598"/></svg></div>
+            <div><h4 class="text-white font-semibold mb-1">Biometric Authentication</h4><p class="text-navy-400 text-sm">Face ID, fingerprint, and hardware key support.</p></div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-nvda-500/10 flex items-center justify-center shrink-0 mt-0.5"><svg class="w-5 h-5 text-nvda-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m10-10V7a4 4 0 00-8 0v4h8z"/></svg></div>
+            <div><h4 class="text-white font-semibold mb-1">Cold Storage</h4><p class="text-navy-400 text-sm">95% of digital assets stored in offline, air-gapped vaults.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="absolute inset-0 bg-nvda-500/10 rounded-3xl blur-3xl"></div>
+        <div class="relative rounded-2xl bg-navy-900 border border-navy-800 p-8" style="box-shadow:0 0 40px rgba(34,197,94,.15);">
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-nvda-500/20 flex items-center justify-center"><svg class="w-5 h-5 text-nvda-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+              <div><div class="text-white font-semibold">Security Status</div><div class="text-nvda-400 text-sm flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-nvda-400 animate-pulse"></span>Active Protection</div></div>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-nvda-500/10 text-nvda-400 text-xs font-semibold border border-nvda-500/20">LIVE</span>
+          </div>
+          <div class="space-y-3">
+            <div class="flex items-center justify-between p-3 rounded-lg bg-navy-950/50"><span class="text-sm text-navy-300">2FA Enabled</span><span class="text-nvda-400 text-sm font-medium">100%</span></div>
+            <div class="flex items-center justify-between p-3 rounded-lg bg-navy-950/50"><span class="text-sm text-navy-300">Encryption</span><span class="text-nvda-400 text-sm font-medium">AES-256</span></div>
+            <div class="flex items-center justify-between p-3 rounded-lg bg-navy-950/50"><span class="text-sm text-navy-300">Cold Storage</span><span class="text-nvda-400 text-sm font-medium">95%</span></div>
+            <div class="flex items-center justify-between p-3 rounded-lg bg-navy-950/50"><span class="text-sm text-navy-300">Uptime</span><span class="text-nvda-400 text-sm font-medium">99.99%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" class="py-24 bg-navy-950">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative rounded-3xl bg-navy-900 border border-navy-800 p-8 lg:p-16 text-center overflow-hidden">
+      <div class="absolute inset-0 bg-nvda-500/5"></div>
+      <div class="blob w-64 h-64 bg-nvda-500 -top-24 -right-24"></div>
+      <div class="blob w-64 h-64 bg-nvda-400 -bottom-24 -left-24"></div>
+      <div class="relative">
+        <h2 class="text-3xl lg:text-5xl font-bold text-white mb-4">Ready to Take Control?</h2>
+        <p class="text-lg text-navy-300 mb-10 max-w-2xl mx-auto">Join 120,000+ investors using Clarity Heloc to manage, trade, and grow their wealth — all in one place.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-nvda-500 hover:bg-nvda-400 text-white font-bold text-lg transition-all shadow-xl shadow-nvda-500/25">Create Free Account<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          <a href="#" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-navy-950 hover:bg-navy-800 text-white font-semibold text-lg border border-navy-800 transition-all">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-navy-950 border-t border-navy-900 py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-4 gap-8 mb-12">
+      <div class="md:col-span-2">
+        <a href="#" class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-nvda-500 flex items-center justify-center"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 10h.01M15 10h.01M9.5 15a3.5 3.5 0 005 0"/></svg></div>
+          <span class="text-white font-bold text-lg">Clarity<span class="text-nvda-400">Heloc</span></span>
+        </a>
+        <p class="text-navy-400 text-sm leading-relaxed max-w-sm">The modern digital wallet for investors who demand speed, security, and complete control over their financial future.</p>
+      </div>
+      <div><h4 class="text-white font-semibold mb-4">Product</h4><ul class="space-y-2 text-sm text-navy-400"><li><a href="#features" class="hover:text-nvda-400 transition">Features</a></li><li><a href="#markets" class="hover:text-nvda-400 transition">Markets</a></li><li><a href="#" class="hover:text-nvda-400 transition">Pricing</a></li><li><a href="#" class="hover:text-nvda-400 transition">API</a></li></ul></div>
+      <div><h4 class="text-white font-semibold mb-4">Company</h4><ul class="space-y-2 text-sm text-navy-400"><li><a href="#" class="hover:text-nvda-400 transition">About</a></li><li><a href="#" class="hover:text-nvda-400 transition">Blog</a></li><li><a href="#" class="hover:text-nvda-400 transition">Careers</a></li><li><a href="#" class="hover:text-nvda-400 transition">Legal</a></li></ul></div>
+    </div>
+    <div class="pt-8 border-t border-navy-900 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-navy-500">© 2026 Clarity Heloc. All rights reserved.</p>
+      <div class="flex items-center gap-6 text-sm text-navy-500"><a href="#" class="hover:text-navy-300 transition">Privacy</a><a href="#" class="hover:text-navy-300 transition">Terms</a><a href="#" class="hover:text-navy-300 transition">Cookies</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Navbar scroll effect
+const navbar=document.getElementById("navbar");
+window.addEventListener("scroll",()=>{
+  if(window.scrollY>20){
+    navbar.classList.add("bg-navy-950/80","nav-blur","border-b","border-navy-800/50");
+    navbar.classList.remove("bg-transparent");
+  }else{
+    navbar.classList.remove("bg-navy-950/80","nav-blur","border-b","border-navy-800/50");
+    navbar.classList.add("bg-transparent");
+  }
+});
+
+// Mobile menu
+const mobileBtn=document.getElementById("mobile-btn");
+const mobileMenu=document.getElementById("mobile-menu");
+const menuIcon=document.getElementById("menu-icon");
+let menuOpen=false;
+mobileBtn.addEventListener("click",()=>{
+  menuOpen=!menuOpen;
+  if(menuOpen){
+    mobileMenu.classList.remove("hidden");
+    menuIcon.innerHTML='<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>';
+  }else{
+    mobileMenu.classList.add("hidden");
+    menuIcon.innerHTML='<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>';
+  }
+});
+mobileMenu.querySelectorAll("a").forEach(link=>{
+  link.addEventListener("click",()=>{
+    menuOpen=false;
+    mobileMenu.classList.add("hidden");
+    menuIcon.innerHTML='<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>';
+  });
+});
+</script>
+
+</body>
+</html>
